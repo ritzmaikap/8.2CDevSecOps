@@ -27,8 +27,9 @@ pipeline {
             	always {
                 	emailext (
                     		to: 'ritikamaikap.1997@gmail.com',
-                    		subject: "JenkinsP - Test Stage ${currentBuild.result}",
+                    		subject: "JenkinsP - Test Stage ${currentBuild.currentResult}",
                     		body: "The Test stage has finished with status: ${currentBuild.result}",
+				mimeType: 'text/plain',
                     		attachLog: true
                 		)
             		}
@@ -53,9 +54,9 @@ pipeline {
             	always {
                 	emailext (
                     		to: 'ritikamaikap.1997@gmail.com',
-                    		subject: "Jenkins - Security Scan ${currentBuild.result}",
+                    		subject: "Jenkins - Security Scan ${currentBuild.currentResult}",
                     		body: "The Security Scan stage has finished with status: ${currentBuild.result}",
-                    
+				mimeType: 'text/plain',
                     		attachLog: true
                 		)
             		}

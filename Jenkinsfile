@@ -18,7 +18,10 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                sh 'npm test || true' // Allows pipeline to continue despite test failures
+                sh '''
+		export PATH=$PATH:/opt/homebrew/bin
+            	which npm
+		npm test || true''' // Allows pipeline to continue despite test failures
             }
 	    post {
             	always {
@@ -33,12 +36,18 @@ pipeline {
         }
         stage('Generate Coverage Report') {
             steps {
-                sh 'npm run coverage || true' //Ensure coverage report exists
+                sh '''
+		export PATH=$PATH:/opt/homebrew/bin
+            	which npm
+		npm run coverage || true''' //Ensure coverage report exists
             }
         }
         stage('NPM Audit (Security Scan)') {
             steps {
-                sh 'npm audit || true' // this will show known CVEs in the output
+                sh '''
+		export PATH=$PATH:/opt/homebrew/bin
+            	which npm
+		npm audit || true''' // this will show known CVEs in the output
             }
 	    post {
             	always {

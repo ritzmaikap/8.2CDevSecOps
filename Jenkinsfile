@@ -20,7 +20,7 @@ pipeline {
             	always {
                 	emailext (
                     		to: 's224955405@deakin.edu.au',
-                    		subject: "Jenkins - Test Stage ${currentBuild.result}",
+                    		subject: "JenkinsP - Test Stage ${currentBuild.result}",
                     		body: "The Test stage has finished with status: ${currentBuild.result}",
                     		attachLog: true
                 		)

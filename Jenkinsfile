@@ -26,7 +26,7 @@ pipeline {
 	    post {
             	always {
                 	emailext (
-                    		to: 's224955405@deakin.edu.au',
+                    		to: 'ritikamaikap.1997@gmail.com',
                     		subject: "JenkinsP - Test Stage ${currentBuild.result}",
                     		body: "The Test stage has finished with status: ${currentBuild.result}",
                     		attachLog: true
@@ -52,7 +52,7 @@ pipeline {
 	    post {
             	always {
                 	emailext (
-                    		to: 's224955405@deakin.edu.au',
+                    		to: 'ritikamaikap.1997@gmail.com',
                     		subject: "Jenkins - Security Scan ${currentBuild.result}",
                     		body: "The Security Scan stage has finished with status: ${currentBuild.result}",
                     

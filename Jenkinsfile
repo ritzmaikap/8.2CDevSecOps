@@ -16,6 +16,16 @@ pipeline {
             steps {
                 sh 'npm test || true' // Allows pipeline to continue despite test failures
             }
+	    post {
+            	always {
+                	emailext (
+                    		to: 's224955405@deakin.edu.au',
+                    		subject: "Jenkins - Test Stage ${currentBuild.result}",
+                    		body: "The Test stage has finished with status: ${currentBuild.result}",
+                    		attachLog: true
+                		)
+            		}
+        	}
         }
         stage('Generate Coverage Report') {
             steps {
@@ -26,6 +36,18 @@ pipeline {
             steps {
                 sh 'npm audit || true' // this will show known CVEs in the output
             }
+	    post {
+            	always {
+                	emailext (
+                    		to: 's224955405@deakin.edu.au',
+                    		subject: "Jenkins - Security Scan ${currentBuild.result}",
+                    		body: "The Security Scan stage has finished with status: ${currentBuild.result}",
+                    
+                    		attachLog: true
+                		)
+            		}
+        	}
+
         }
     }
 }

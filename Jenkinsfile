@@ -23,17 +23,7 @@ pipeline {
             	which npm
 		npm test || true''' // Allows pipeline to continue despite test failures
             }
-	    post {
-            	always {
-                	emailext (
-                    		to: 'ritikamaikap.1997@gmail.com',
-                    		subject: "JenkinsP - Test Stage ${currentBuild.currentResult}",
-                    		body: "The Test stage has finished with status: ${currentBuild.result}",
-				mimeType: 'text/plain',
-                    		attachLog: true
-                		)
-            		}
-        	}
+	    
         }
         stage('Generate Coverage Report') {
             steps {
@@ -50,17 +40,7 @@ pipeline {
             	which npm
 		npm audit || true''' // this will show known CVEs in the output
             }
-	    post {
-            	always {
-                	emailext (
-                    		to: 'ritikamaikap.1997@gmail.com',
-                    		subject: "Jenkins - Security Scan ${currentBuild.currentResult}",
-                    		body: "The Security Scan stage has finished with status: ${currentBuild.result}",
-				mimeType: 'text/plain',
-                    		attachLog: true
-                		)
-            		}
-        	}
+	    
 
         }
     }
